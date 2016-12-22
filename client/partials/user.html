@@ -1,0 +1,17 @@
+<div ng-controller='listsController'>
+
+	<h3>{{get_user.name}}'s Bucket lists</h3>
+	<h4>Done</h4>
+	<div id="done">
+		<p ng-repeat="bucket in bucket_lists" ng-if="bucket.user_name === get_user.name || bucket.tagged_user === get_user.name">
+			<input type="checkbox"  ng-checked="{{bucket.tagged_status}}">{{bucket.user_name}} {{bucket.title}} {{bucket.description}} -  {{bucket.createdAt | date: ' MMM d, yyyy '}}
+		</p>
+	</div>
+	<h4>Pending</h4>
+	<div id="pending">
+		<p ng-repeat="bucket in bucket_lists" ng-if="bucket.user_name === get_user.name || bucket.tagged_user === get_user.name">
+			<input type="checkbox" >{{bucket.user_name}} {{bucket.title}} {{bucket.description}} -  {{bucket.createdAt | date: ' MMM d, yyyy '}}
+		</p>
+
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<div id="wrapper">
+	<div ng-controller='dashboardController'>
+		<p><a href="#!/dashboard">Home</a> | <input type="submit" value = "logout" ng-click="logout()"></p>	
+		<h4>Welcome, {{currentUser}}!</h4>
+		<p>
+		<input type="text" placeholder="Title" ng-model="new.title"> 
+		<input type="text" placeholder="Description" ng-model="new.description">
+		<select ng-model="new.tagged_user" >
+		<option ng-repeat="user in all_users" value="{{user.name}}" >{{user.name}}</option>
+		</select>		
+	<input type="submit" value="Add to List" ng-click="add_list()">
+		</p>
+		<p>Before I die I want to...</p>
+		<div>
+			<p ng-repeat="list in get_lists " ng-if="list.user_name === currentUser || list.tagged_user === currentUser"><input type="checkbox" ng-click="tag(list._id)" ng-checked="{{list.tagged_status}}" >{{list.user_name}} {{list.title}} {{list.description}} -  {{list.createdAt | date: ' MMM d, yyyy '}}</p>	
+		</div>
+		<div>
+		<h5>List of other users (Click to view profile)</h5>
+			<p ng-repeat="user in all_users" ng-if="user.name != currentUser">
+				<a href="#!/user/{{user._id}}">{{user.name}}</a>				
+			</p>
+		</div>
+	</div>
+</div>
